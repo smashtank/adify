@@ -1,6 +1,8 @@
 = Adify
 
-Adify is a simple to use (hopefully) rails gem that builds up ad tags for cashing in on your users.  Adify is built to work with any ad server.  The initial build will only include DFP (Google Ad Manager) as that is what I need this gem for
+Adify is a simple to use (hopefully) rails gem that builds up ad tags for cashing in on your users.  Adify is built to work with any ad server.  The initial build will only include DFP (Google Ad Manager) as that is what I need this gem for.
+
+This is just the initial version and isn't really complete.  I haven't worked with other adservers so it might be a little tailored to double click.  Also the generator is butchered right now.
 
 == Contributing to adify
  
