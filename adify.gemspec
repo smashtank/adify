@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Eric Harrison"]
   s.date = %q{2011-05-30}
-  s.description = "Adify lets you create ad tags easily and quickly with a simple common structure"
+  s.description = %q{Adify lets you create ad tags easily and quickly with a simple common structure}
   s.email = %q{eharrison@classifiedadventures.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "adify.gemspec",
     "lib/adify.rb",
     "lib/adify/controller.rb",
     "lib/adify/helper.rb",
@@ -40,7 +41,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.5.1}
-  s.summary = "create ad tags for common ad servers easily."
+  s.summary = %q{create ad tags for common ad servers easily.}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
