@@ -8,7 +8,8 @@ module Adify
     module ClassMethods
       def adify(*args)
         class_eval <<-EOV
-         cattr_accessor :adify_#{self.to_s.tableize.gsub(/\//,'_')}_attributes
+          cattr_accessor :adify_#{self.to_s.tableize.gsub(/\//,'_')}_attributes
+          cattr_accessor :adify_tag_number
 
           def self.adify_attributes=(hash)
             self.adify_#{self.to_s.tableize}_attributes = hash
@@ -38,6 +39,7 @@ module Adify
             end
           end
         self.adify_attributes = *args
+        self.adify_tag_number = 0
       end
     end
   end

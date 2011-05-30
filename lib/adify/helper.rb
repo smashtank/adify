@@ -1,11 +1,11 @@
 module AdifyHelper
-  @@tag_number = 0
 
-  def adify_tag(*args)
+  def adify_tag(args)
     item = args.delete(:item) rescue nil
-    partial = args.delete(:partial) rescue 'adify/dfp'
-    tag_attributes = adification(item)
-    render_to_string :partial => partial, :locals => tag_attributes
+    partial = args.delete(:partial) || 'adify/dfp'
+    tag_attributes = adification(item).merge(args)
+    #pass in the hash as a parameter too in case they need all the value but don't know the names
+    render :partial => partial, :locals => tag_attributes.merge(:tag_attributes => tag_attributes.clone)
   end
 
   def random(length)
@@ -13,6 +13,6 @@ module AdifyHelper
   end
 
   def tag_number
-    @@tag_number += 1
+    @controller.class.adify_tag_number += 1
   end
 end
