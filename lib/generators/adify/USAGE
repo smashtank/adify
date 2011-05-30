@@ -1,0 +1,8 @@
+Description:
+  Generates a variety of templates for tags in view.  well only dfp right now.
+
+Example:
+    rails generate adify:partial dfp
+
+    This will create:
+        _dfp.html.erb in the app/views/adify directory

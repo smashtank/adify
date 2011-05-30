@@ -1,18 +1,16 @@
-= adify
+= Adify
 
-Description goes here.
+Adify is a simple to use (hopefully) rails gem that builds up ad tags for cashing in on your users.  Adify is built to work with any ad server.  The initial build will only include DFP (Google Ad Manager) as that is what I need this gem for
 
 == Contributing to adify
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
+* Fork me
 * Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+* Do stuff
+* Tests.  Pull requests without tests will be flogged publically.  Feel free to flog me for forgetting tests then add them.\
 
-== Copyright
+ == Copyright
 
 Copyright (c) 2011 Eric Harrison. See LICENSE.txt for
 further details.
