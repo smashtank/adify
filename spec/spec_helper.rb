@@ -26,31 +26,3 @@ ActiveRecord::Schema.define(:version => 1) do
   end
 end
 
-
-class Item < ActiveRecord::Base
-  adify :item_only => :id, :override_by_item => 'item'
-
-  def id
-    "item id via symbol"
-  end
-
-  def proc
-    "proc return"
-  end
-end
-
-class MyBaseController < ActionController::Base
-  adify :override_by_item => 'Base', :base_only => ['base_arry_only_1', 'base array only 2'], :override_by_controller => 'base', :override_by_action => 'base'
-end
-
-class MyController < MyBaseController
-  adify :override_by_item => 'Controller', :controller_only => :symbol_no_method, :override_by_controller => 'controller', :override_by_action => 'controller'
-
-  def index
-    #maybe rename this
-    adify(:override_by_item => "Action", :override_by_action => 'Action', :action_only => Proc.new(){|item| item.proc})
-    item = Item.new
-    @adtag = adification(item)
-  end
-end
-

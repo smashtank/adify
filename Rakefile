@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "adify"
   gem.homepage = "http://github.com/fuelxc/adify"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "create ad tags for common ad servers easily."
+  gem.description = "Adify lets you create ad tags easily and quickly with a simple common structure"
   gem.email = "eharrison@classifiedadventures.com"
   gem.authors = ["Eric Harrison"]
   # dependencies defined in Gemfile
