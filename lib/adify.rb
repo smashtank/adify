@@ -37,9 +37,14 @@ end
 
 class ActionController::Base
   include Adify::Controller
-  helper_method :adification, :registered_ad_spots, :register_ad_spot
+  helper_method :adification, :registered_ad_spots, :register_ad_spot, :tag_number
 
   @registered_ad_spots
+
+  def tag_number
+    adify_tag_number += 1
+  end
+
   def registered_ad_spots
     @registered_ad_spots || []
   end
