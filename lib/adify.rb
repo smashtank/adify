@@ -2,8 +2,6 @@ require 'action_controller'
 require "active_record"
 require "active_support"
 
-require 'deep_merge'
-
 require 'adify/controller'
 require "adify/model"
 require "adify/helper"
@@ -49,5 +47,8 @@ end
 class Hash
   def update_values(&block)
     self.update(self){|k,v| block.call v}
+  end
+  def deep_merge(h)
+    self.merge!(h) {|key, _old, _new| if _old.class == Hash then _old.recursive_merge(_new) else _new end  }
   end
 end
