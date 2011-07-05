@@ -5,7 +5,6 @@ gem "rails", ">= 2.3.5"
 gem "activesupport", ">= 2.3.5"
 gem "activerecord", ">= 2.3.5"
 gem "actionpack", ">= 2.3.5"
-gem 'deep_merge'
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
