@@ -49,6 +49,6 @@ class Hash
     self.update(self){|k,v| block.call v}
   end
   def deep_merge(h)
-    self.merge!(h) {|key, _old, _new| if _old.class == Hash then _old.recursive_merge(_new) else _new end  }
+    self.merge!(h) {|key, _old, _new| if _old.class == Hash then _old.deep_merge(_new) else _new end  }
   end
 end
