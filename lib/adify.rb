@@ -48,7 +48,16 @@ class Hash
   def update_values(&block)
     self.update(self){|k,v| block.call v}
   end
-  def deep_merge(h)
-    self.merge!(h) {|key, _old, _new| if _old.class == Hash then _old.deep_merge(_new) else _new end  }
+
+  #don't overwrite the way something is merged if someone already defined it
+  unless Hash.public_instance_methods.include?('deep_merge')
+    class_eval <<EOV
+      def deep_merge(h)
+        debugger
+        a='b'
+
+        h#self.merge!(h) {|key, _old, _new| if _old.class == Hash then _old.deep_merge(_new) else _new end  }
+      end
+EOV
   end
 end
