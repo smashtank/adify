@@ -12,11 +12,12 @@ module Adify
           cattr_accessor :adify_tag_number
 
           def self.adify_attributes=(hash)
-            self.adify_#{self.to_s.tableize}_attributes = hash
+            self.adify_#{self.to_s.tableize.gsub(/\//,'_')}_attributes = hash
           end
 
           def self.adify_attributes
-            self.ancestors[1].adify_attributes.deep_merge(self.adify_#{self.to_s.tableize.gsub(/\//,'_')}_attributes) rescue self.adify_#{self.to_s.tableize.gsub(/\//,'_')}_attributes
+             ancestor = self.ancestors.slice(1,self.ancestors.length).select{|c| c.respond_to?(:adify_attributes)}.first
+             ancestor.adify_attributes.deep_merge(self.adify_#{self.to_s.tableize.gsub(/\//,'_')}_attributes) rescue self.adify_#{self.to_s.tableize.gsub(/\//,'_')}_attributes
           end
         EOV
 

@@ -15,11 +15,11 @@ module Adify
 
     def adify_attributes
       ad_attr = self.adify_instance_attributes || {}
-      self.class.adify_attributes.deep_merge(ad_attr) rescue ad_attr
+      self.class.adify_attributes.adify_merge(ad_attr) rescue ad_attr
     end
 
     def adification(item = nil)
-      ad_attr = item.nil? ? self.adify_attributes : self.adify_attributes.deep_merge(item.adify_attributes)
+      ad_attr = item.nil? ? self.adify_attributes : self.adify_attributes.adify_merge(item.adify_attributes)
       item_for_adification = item.nil? ? self : item
       @adification_of_item = ad_attr.update_values{|v| get_adify_value(item_for_adification,v)}
     end
@@ -37,6 +37,21 @@ end
 
 class ActionController::Base
   include Adify::Controller
+  helper_method :adification, :registered_ad_spots, :register_ad_spot
+
+  @registered_ad_spots
+  def registered_ad_spots
+    @registered_ad_spots || []
+  end
+
+  def register_ad_spot(val)
+    @registered_ad_spots ||= []
+    @registered_ad_spots << val
+  end
+
+  def self.adification
+    @adification_of_item = self.adify_attributes.update_values{|v| get_adify_value(self,v)}
+  end
 end
 
 class ActionView::Base
@@ -48,16 +63,7 @@ class Hash
   def update_values(&block)
     self.update(self){|k,v| block.call v}
   end
-
-  #don't overwrite the way something is merged if someone already defined it
-  unless Hash.public_instance_methods.include?('deep_merge')
-    class_eval <<EOV
-      def deep_merge(h)
-        debugger
-        a='b'
-
-        h#self.merge!(h) {|key, _old, _new| if _old.class == Hash then _old.deep_merge(_new) else _new end  }
-      end
-EOV
+  def adify_merge(h)
+    self.merge!(h) {|key, _old, _new| if _old.class == Hash then _old.adify_merge(_new) else _new end  }
   end
 end
