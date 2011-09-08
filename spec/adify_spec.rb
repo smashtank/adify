@@ -34,12 +34,12 @@ describe Adify do
       adify = app.index
       adify.should_not be_nil
       adify.should == {
-          :override_by_action     => "Action",
           :override_by_item       => "item",
-          :controller_only        => :symbol_no_method,
           :base_only              => ["base_arry_only_1", {:item1 => "base array only 2"}],
-          :action_only            => "proc return",
           :override_by_controller => "controller",
+          :override_by_action     => "Action",
+          :controller_only        => :symbol_no_method,
+          :action_only            => "proc return",
           :item_only              => "item id via symbol"
       }
     end
