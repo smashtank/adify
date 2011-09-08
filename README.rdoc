@@ -4,6 +4,11 @@ Adify is a simple to use (hopefully) rails gem that builds up ad tags for cashin
 
 This is just the initial version and isn't really complete.  I haven't worked with other ad servers so it might be a little tailored to double click.  Also the generator is butchered right now.
 
+== Releases
+=== Version 0.2.0
+* Refactored everything to use one module
+* Tested with rails 2 & 3
+
 == Contributing to adify
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
