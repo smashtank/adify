@@ -9,20 +9,23 @@ module Adify
   end
   
   def adify(args)
-    self.class_eval <<-EOM
+    if self.class == Class
       include Adify::Methods
       extend  Adify::Methods
-    EOM
+    end
+    singleton = class << self; self; end
+      singleton.module_eval do
+          define_method(:adify_attributes=) do |hash|
+            @adify_attributes = hash
+          end
+      end
+    
     self.adify_attributes = args
   end
   
   module Methods
-    def adify_attributes=(hash)
-      @adify_attributes = hash
-    end
-    
     def adify_attributes
-      my_attributes = @adify_attributes || {}
+      my_attributes = get_adify_attributes
       merge_with = self.respond_to?(:ancestors) ? self.ancestors.slice(1,self.ancestors.length).select{|c| c.respond_to?(:adify_attributes)}.first : self.class
       merge_with.respond_to?(:adify_attributes) ? merge_with.adify_attributes.adify_merge(my_attributes) : my_attributes
     end
@@ -30,10 +33,13 @@ module Adify
     def adification(item = nil)
       ad_attr = item.nil? ? self.adify_attributes : self.adify_attributes.adify_merge(item.adify_attributes)
       item_for_adification = item.nil? ? self : item
-      ad_attr.update_values{|v| get_adify_value(item_for_adification,v)}.symbolize_keys_recursively
+      ad_attr.update_values{|v| get_adify_value(item_for_adification,v)}.symbolize_keys_recursively.clone
     end
     
     private
+      def get_adify_attributes
+        (@adify_attributes || {}).clone
+      end
       def get_adify_value(item,value)
         case value.class.to_s
           when "Array"  then value.each.collect{|v| get_adify_value(item,v)}

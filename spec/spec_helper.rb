@@ -24,5 +24,10 @@ ActiveRecord::Schema.define(:version => 1) do
     t.datetime  :updated_at
     t.string    :name
   end
+  create_table :things do |t|
+    t.datetime  :created_at
+    t.datetime  :updated_at
+    t.string    :name
+  end
 end
 
