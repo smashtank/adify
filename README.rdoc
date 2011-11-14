@@ -21,7 +21,7 @@ This is just the initial version and isn't really complete.  I haven't worked wi
 * Do stuff
 * Tests.  Pull requests without tests will be flogged publically.  Feel free to flog me for forgetting tests then add them.\
 
- == Copyright
+== Copyright
 
 Copyright (c) 2011 Eric Harrison. See LICENSE.txt for
 further details.
